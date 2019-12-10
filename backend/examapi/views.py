@@ -10,6 +10,11 @@ from examapi.serializers import (
     QuestionSerializer
 )
 
-class QuestionView(ListAPIView):
+class QuestionListView(ListAPIView):
     serializer_class = QuestionSerializer
-    queryset = Question.objects.all()
+    
+    def get_queryset(self):
+        queryset = Question.objects.filter(
+            id=1
+        ).first()
+        return queryset

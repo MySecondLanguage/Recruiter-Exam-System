@@ -52,6 +52,9 @@ class Exam(models.Model):
         Question,
         through='QuestionGroup'
     )
+    is_published = models.BooleanField(
+        default=True
+    )
 
 class QuestionGroup(models.Model):
     exam = models.ForeignKey(
