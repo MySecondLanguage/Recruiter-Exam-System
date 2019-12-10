@@ -1,0 +1,53 @@
+{
+  "name": "RES",
+  "version": "1.0.0",
+  "description": "A requirtment process assignment for a bangladeshi Company (prohibited to use commercial Purpose without permission)",
+  "main": "client/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "watch": "./node_modules/.bin/webpack --config webpack.prod.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Anamul Hoq",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^3.2.0",
+    "csv-loader": "^2.1.1",
+    "express": "^4.15.3",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-middleware": "^3.7.1",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.0",
+    "xml-loader": "^1.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4"
+  }
+}
