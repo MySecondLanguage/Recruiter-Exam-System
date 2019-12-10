@@ -21,11 +21,17 @@ class Home extends React.Component {
          });
      }
 
+     next = (id) => {
+        var q = document.getElementById('haha');
+        console.log(q, id);
+		q.style.display = "none"
+	}
+
     render() {
         return (
             <Fragment>
                 {this.props.question.map((user, index) => (
-                    <div key={index}>
+                    <div style={{display: "block"}} id='haha' key={index}>
                         
                         <h1>{ user.title }</h1>
 
@@ -41,7 +47,7 @@ class Home extends React.Component {
                             
                         ))}
                         
-                        <button>Submit</button>
+                        <button onClick={this.next}>Submit</button>
                     </div>
                 ))}
             </Fragment>

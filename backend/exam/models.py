@@ -48,6 +48,10 @@ class Exam(models.Model):
     total_duration = models.DurationField(
         default=30
     )
+    queston = models.ManyToManyField(
+        Question,
+        through='QuestionGroup'
+    )
 
 class QuestionGroup(models.Model):
     exam = models.ForeignKey(
