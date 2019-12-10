@@ -1,10 +1,18 @@
-// import axios from '../client/utils/axios'; // Configured axios
+const axios = require('axios');
 
-// const apiHelper = {
-//     getQuestionList: () => axios.get(`question-list/`),
+const host = window.location.hostname
+const port = window.location.port
+const protocol = window.location.protocol
 
-//     // login: (data) => axios.post(`account/login/`, data),
-//     // verifyToken: (data) => axios.post(`account/verify/`, data),
-// };
+// get root url
+const rootUrl = port ? `${protocol}//${host}:8000/` : `${protocol}//${host}/`;
+const subUrl = 'api/v1/'
 
-// export default apiHelper;
+//  considered as api root url
+const apiUrl = `${rootUrl}${subUrl}`
+
+const apiHelper = {
+    getQuestionList: () => axios.get(`${apiUrl}question-list/`),
+};
+
+export default apiHelper;
