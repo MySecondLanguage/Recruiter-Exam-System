@@ -5,4 +5,4 @@ from django.shortcuts import (
 
 # Create your views here.
 def exam(request):
-    return render(request, 'exam.html')
+    return render(request, 'index.html')
