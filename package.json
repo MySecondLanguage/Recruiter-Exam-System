@@ -1,7 +1,7 @@
 {
   "name": "RES",
   "version": "1.0.0",
-  "description": "A requirtment process assignment for a bangladeshi Company (prohibited to use commercial Purpose without permission)",
+  "description": "A requirtment process assignment",
   "main": "client/index.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
