@@ -10,22 +10,11 @@ class App extends Component {
     return (
     
       <React.Fragment>
-        <Router>
+    
           <div className="container">
-            {/* Menu Bara */}
-            <nav className="navbar navbar-light bg-light justify-content-center">
-              <a className="navbar-brand" href="#">
-                RECRUITER EXAM SYSTEM
-              </a>
-            </nav>
-
-            {/* Routing */}
-            <Switch>
-                <Route exact path='/' component={Home} />
-            </Switch>
-            
+                <Home></Home>            
           </div>
-       </Router>
+    
       </React.Fragment>
     
     );
