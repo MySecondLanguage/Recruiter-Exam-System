@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'account',
     'exam',
     'result',
+    'examapi',
     'rest_framework',
 ]
 
