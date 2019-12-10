@@ -39,10 +39,9 @@ class Home extends React.Component {
                                 <label htmlFor={choice.id}>{choice.choice_text}</label>
                             </div>
                             
-
                         ))}
                         
-                        
+                        <button>Submit</button>
                     </div>
                 ))}
             </Fragment>
