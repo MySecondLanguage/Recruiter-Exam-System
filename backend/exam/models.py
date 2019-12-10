@@ -6,6 +6,15 @@ class Topic(models.Model):
         max_length=50
     )
 
+class Choice(models.Model):
+    choice_text = models.CharField(
+        max_length=200
+    )
+    is_right_choice = models.BooleanField(
+        default=False
+    )
+
+
 class Question(models.Model):
     title = models.CharField(
         max_length=100
@@ -17,17 +26,19 @@ class Question(models.Model):
     total_duration = models.DurationField(
         default=30
     )
+    choices = models.ManyToManyField(
+        Choice,
+        through='QuestionChoice'
+    )
 
-class Choice(models.Model):
+class QuestionChoice(models.Model):
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE
     )
-    choice_text = models.CharField(
-        max_length=200
-    )
-    is_right_answer = models.BooleanField(
-        default=False
+    choice = models.ForeignKey(
+        Choice,
+        on_delete=models.CASCADE
     )
 
 class Exam(models.Model):
