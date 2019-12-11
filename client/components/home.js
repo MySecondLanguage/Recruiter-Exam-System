@@ -6,7 +6,9 @@ class Home extends React.Component {
     constructor() {
         super();
         
-        this.state = {};
+        this.state = {
+            result: {},
+        };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -29,10 +31,11 @@ class Home extends React.Component {
      }
 
      handleChange(event) {
-        const choice = {}
-        choice[event.target.name] = event.target.value
+        this.state.result[event.target.name] = event.target.value
         this.setState({
-          ...choice
+          result: {
+              ...this.state.result
+          }
         });
       }
 
@@ -41,12 +44,13 @@ class Home extends React.Component {
         
         const result = {
             question: this.props.question.id,
-            ...this.state
+            answer: Object.keys(this.state.result).map((key) => (
+                parseInt(this.state.result[key])
+            ))
         }
 
-        console.log(result)
         apiHelper.setResult(result).then((response) => {
-            console.log(response);
+            // console.log(response);
         })
         // const choice_1 = this.state.choice ? this.state.choice : false
         // var choice_2 = 'none'
