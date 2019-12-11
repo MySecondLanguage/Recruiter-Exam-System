@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path, re_path
 from examapi import views
 
 urlpatterns = [
     path('question-list/', views.QuestionListView.as_view(), name='examapi.exam_list'),
-    path('result-create/', views.CreateResultView.as_view(), name='examapi.create_result')
+    path('create-result/', views.CreateResult.as_view(), name='examapi.result_create')
 ]

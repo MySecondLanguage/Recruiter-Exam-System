@@ -38,22 +38,10 @@ class QuestionListView(RetrieveAPIView):
         ).first()
         return queryset
 
-class CreateResultView(CreateAPIView):
-    serializer_class = ResultCreateSerializer
 
-    def create(self, request, *args, **kwargs):
-        if not request.data._mutable:
-            request.data._mutable = True
-        question = Question.objects.filter(id=request.data['question']).values('choices')
+class CreateResult(APIView):
+   
 
-        # print(question, '-----------------------------------------------------')
-
-        request.data['user'] = request.user.id
-        # request.data['marks'] = request.user.id
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, headers=headers)
-
-
+    def get(self, request, format=None):
+        print(request.GET)
+        return Response(request.GET['choice_id'])
