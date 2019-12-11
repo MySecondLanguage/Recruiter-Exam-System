@@ -7,6 +7,8 @@ from exam.models import (
     QuestionChoice
 )
 
+from result.models import Result
+
 
 
 class ChoiceSerializer(ModelSerializer):
@@ -22,4 +24,9 @@ class QuestionSerializer(ModelSerializer):
     class Meta:
         model = Question
     
+        fields = '__all__'
+
+class ResultCreateSerializer(ModelSerializer):
+    class Meta:
+        model = Result
         fields = '__all__'

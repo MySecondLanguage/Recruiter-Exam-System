@@ -37,7 +37,7 @@ class Home extends React.Component {
       handleSubmit(event) {
         event.preventDefault();
         
-        alert(this.state.choice);
+        console.log(this.state)
       }
 
 
@@ -60,6 +60,7 @@ class Home extends React.Component {
                                         
                                         <input
                                             id="radio"
+                                            name='d'
                                             onChange={this.handleChange}
                                             value={choice.id}
                                             type="radio">
