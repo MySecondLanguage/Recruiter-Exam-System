@@ -36,6 +36,19 @@ class Home extends React.Component {
                             <h1 className="q-title">{ question.title }</h1>
                             <hr></hr>
                             <div>
+                                {question.choices ? question.choices.map((choice, index) => (
+                                    <div key={index}>
+                                        
+                                        <input
+                                            id="radio"
+                                            type="radio">
+                                        </input>
+                                        <label htmlFor="radio">{choice.choice_text}</label>
+                                    </div>
+                                )) : <p>no choices is loaded yet, please try again</p>}
+                            </div>
+                            <button className="btn btn-primary">Save Answwer</button>
+                            <div>
                                
                             </div>
                         </form>
