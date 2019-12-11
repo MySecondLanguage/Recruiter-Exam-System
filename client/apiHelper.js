@@ -1,5 +1,8 @@
 const axios = require('axios');
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+
 const host = window.location.hostname
 const port = window.location.port
 const protocol = window.location.protocol
