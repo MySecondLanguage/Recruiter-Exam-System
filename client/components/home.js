@@ -41,6 +41,7 @@ class Home extends React.Component {
                                         
                                         <input
                                             id="radio"
+                                            value={choice.id}
                                             type="radio">
                                         </input>
                                         <label htmlFor="radio">{choice.choice_text}</label>
