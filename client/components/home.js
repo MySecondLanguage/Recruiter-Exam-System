@@ -24,9 +24,23 @@ class Home extends React.Component {
 
 
     render() {
+        const question = this.props.question;
         return (
             <Fragment>
-                <p>dfkd</p>
+                <div className="spacer-50"></div>
+                <div className="row">
+                    <div className="col-md-3"></div>
+                    <div className="col-md-6">
+                        <form className="exam-form">
+                            <h1 className="q-title">{ question.title }</h1>
+                            <hr></hr>
+                            <div>
+                                
+                            </div>
+                        </form>
+                    </div>
+                    <div className="col-md-3"></div>
+                </div>
             </Fragment>
         );
     }
