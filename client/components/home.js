@@ -37,7 +37,13 @@ class Home extends React.Component {
       handleSubmit(event) {
         event.preventDefault();
         
-        console.log(this.state)
+        const question_id = this.props.question.id;
+        const data = {
+            question: question_id,
+            choice: this.state.choice,
+        };
+
+        console.log(data);
       }
 
 
@@ -60,7 +66,7 @@ class Home extends React.Component {
                                         
                                         <input
                                             id="radio"
-                                            name='d'
+                                            name={choice.id}
                                             onChange={this.handleChange}
                                             value={choice.id}
                                             type="radio">
