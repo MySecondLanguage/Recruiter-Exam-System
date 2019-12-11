@@ -25,6 +25,7 @@ class Home extends React.Component {
 
     render() {
         const question = this.props.question;
+        
         return (
             <Fragment>
                 <div className="spacer-50"></div>
@@ -35,7 +36,7 @@ class Home extends React.Component {
                             <h1 className="q-title">{ question.title }</h1>
                             <hr></hr>
                             <div>
-                                
+                               
                             </div>
                         </form>
                     </div>
