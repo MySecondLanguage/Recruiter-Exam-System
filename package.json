@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "watch": "./node_modules/.bin/webpack --config webpack.prod.js --watch"
+    "watch": "./node_modules/.bin/webpack --config webpack.dev.js --watch"
   },
   "repository": {
     "type": "git",

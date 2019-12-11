@@ -1,5 +1,5 @@
 var initialState = {
-    question: [],
+    question: {},
   };
   
   var Reducer = (state = initialState, action) => {
@@ -8,7 +8,7 @@ var initialState = {
       case 'GET':
         return {
           ...state,
-          question: [...state.question, ...action.response.data],
+          question: action.response.data,
         }
 
       default:
