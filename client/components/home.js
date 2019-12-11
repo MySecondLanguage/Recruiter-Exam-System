@@ -37,13 +37,18 @@ class Home extends React.Component {
       handleSubmit(event) {
         event.preventDefault();
         
-        const question_id = this.props.question.id;
-        const data = {
-            question: question_id,
-            choice: this.state.choice,
-        };
+        const question = this.props.question.id;
+        const choice_1 = this.state.choice ? this.state.choice : false
+        var choice_2 = 'none'
+        var choice_3 = 'none'
+        var choice_4 = 'none'
 
-        console.log(data);
+        
+
+        // console.log(data);
+        apiHelper.setResult(question, choice_1, choice_2, choice_3, choice_4).then((response) => {
+            console.log(response)
+        })
       }
 
 
@@ -73,9 +78,9 @@ class Home extends React.Component {
                                         </input>
                                         <label htmlFor="radio">{choice.choice_text}</label>
                                     </div>
-                                )) : <p>no choices is loaded yet, please try again</p>}
+                                )) : <p>no choices are loaded yet, please try again</p>}
                             </div>
-                            <button className="btn btn-primary">Save Answwer</button>
+                            <button className="btn btn-primary">Save Answer</button>
                             <div>
                                
                             </div>
