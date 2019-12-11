@@ -29,26 +29,36 @@ class Home extends React.Component {
      }
 
      handleChange(event) {
+        const choice = {}
+        choice[event.target.name] = event.target.value
         this.setState({
-          choice: event.target.value
+          ...choice
         });
       }
 
       handleSubmit(event) {
         event.preventDefault();
         
-        const question = this.props.question.id;
-        const choice_1 = this.state.choice ? this.state.choice : false
-        var choice_2 = 'none'
-        var choice_3 = 'none'
-        var choice_4 = 'none'
+        const result = {
+            question: this.props.question.id,
+            ...this.state
+        }
+
+        console.log(result)
+        apiHelper.setResult(result).then((response) => {
+            console.log(response);
+        })
+        // const choice_1 = this.state.choice ? this.state.choice : false
+        // var choice_2 = 'none'
+        // var choice_3 = 'none'
+        // var choice_4 = 'none'
 
         
 
-        // console.log(data);
-        apiHelper.setResult(question, choice_1, choice_2, choice_3, choice_4).then((response) => {
-            console.log(response)
-        })
+        // // console.log(data);
+        // apiHelper.setResult(question, choice_1, choice_2, choice_3, choice_4).then((response) => {
+        //     // console.log(response)
+        // })
       }
 
 
@@ -70,13 +80,13 @@ class Home extends React.Component {
                                     <div key={index}>
                                         
                                         <input
-                                            id="radio"
-                                            name={choice.id}
+                                            id={index}
+                                            name={`choice${index}`}
                                             onChange={this.handleChange}
                                             value={choice.id}
-                                            type="radio">
+                                            type="checkbox">
                                         </input>
-                                        <label htmlFor="radio">{choice.choice_text}</label>
+                                        <label htmlFor={index}>{choice.choice_text}</label>
                                     </div>
                                 )) : <p>no choices are loaded yet, please try again</p>}
                             </div>
