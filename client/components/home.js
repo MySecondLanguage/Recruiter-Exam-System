@@ -3,6 +3,13 @@ import { connect } from "react-redux";
 import apiHelper from '../apiHelper';
 
 class Home extends React.Component {
+    constructor() {
+        super();
+        
+        this.state = {};
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
     componentWillUnmount(){
         // Clear prevous state when retrun to another route
@@ -21,6 +28,18 @@ class Home extends React.Component {
          });
      }
 
+     handleChange(event) {
+        this.setState({
+          choice: event.target.value
+        });
+      }
+
+      handleSubmit(event) {
+        event.preventDefault();
+        
+        alert(this.state.choice);
+      }
+
 
 
     render() {
@@ -32,7 +51,7 @@ class Home extends React.Component {
                 <div className="row">
                     <div className="col-md-3"></div>
                     <div className="col-md-6">
-                        <form className="exam-form">
+                        <form onSubmit={this.handleSubmit} className="exam-form">
                             <h1 className="q-title">{ question.title }</h1>
                             <hr></hr>
                             <div>
@@ -41,6 +60,7 @@ class Home extends React.Component {
                                         
                                         <input
                                             id="radio"
+                                            onChange={this.handleChange}
                                             value={choice.id}
                                             type="radio">
                                         </input>
