@@ -1,14 +1,15 @@
 import React, {Fragment} from "react";
 import { connect } from "react-redux";
 import apiHelper from '../apiHelper';
-
+// import Timer from '../components/Timer'
+import CountDown from '../components/Countdown';
 class Home extends React.Component {
     constructor() {
         super();
         
         this.state = {
             result: {},
-            timer: 10,
+            timer: 0,
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,16 +21,21 @@ class Home extends React.Component {
     }
 
     continueOnTimeOut = (time) => {
-        time = parseInt(time) * 1000
+        if (time) {
+            time = parseInt(time) * 1000
         setTimeout(() => {
             // this.inputElement.click();
-            console.log('reloaded', time)
           }, time);
+        };
+        
     }
 
     getQuestion() {
         apiHelper.getQuestionList().then((response) => {
             // handle success
+            this.setState({
+                timer: response.data.total_second
+            })
             this.props.dispatch({ type: 'GET', response })
             this.continueOnTimeOut(response.data.total_second);
             
@@ -78,7 +84,7 @@ class Home extends React.Component {
             <Fragment>
                 <div className="spacer-50"></div>
                 <div>
-                    <p>{ this.state.timer }</p>
+                    <CountDown second={this.state.timer} />
                 </div>
                 <div className="row">
                     <div className="col-md-1"></div>
