@@ -83,7 +83,7 @@ class Home extends React.Component {
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
-                        <form onSubmit={this.handleSubmit} className="exam-form">
+                        {question.id ? <form onSubmit={this.handleSubmit} className="exam-form">
                             <h1 className="q-title">{ question.title }</h1>
                             <hr></hr>
                             <div className="checkbox-main-container">
@@ -105,7 +105,10 @@ class Home extends React.Component {
                             <div>
                                
                             </div>
-                        </form>
+                        </form> : <div>
+                            <p>Hi, You can see the results now</p>
+                        </div> }
+                        
                     </div>
                     <div className="col-md-1"></div>
                 </div>
