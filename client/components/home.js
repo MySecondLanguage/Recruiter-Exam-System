@@ -44,7 +44,8 @@ class Home extends React.Component {
       }
 
       handleSubmit(event) {
-        event.preventDefault();
+        //   this.getQuestion()
+        // event.preventDefault();
         
         const result = {
             question: this.props.question.id,
