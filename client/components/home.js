@@ -19,10 +19,18 @@ class Home extends React.Component {
         
     }
 
+    continueOnTimeOut = () => {
+        setTimeout(() => {
+            this.inputElement.click();
+          }, 8000);
+    }
+
     getQuestion() {
         apiHelper.getQuestionList().then((response) => {
             // handle success
-            this.props.dispatch({ type: 'GET', response }) 
+            this.props.dispatch({ type: 'GET', response })
+            this.continueOnTimeOut();
+            
           }, () => {
              // handle error
              
@@ -91,7 +99,7 @@ class Home extends React.Component {
                                     </div>
                                 )) : <p>no choices are loaded yet, please try again</p>}
                             </div>
-                            <button className="btn btn-primary">Submit</button>
+                            <button ref={input => this.inputElement = input} className="btn btn-primary">Submit</button>
                             <div>
                                
                             </div>
