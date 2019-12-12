@@ -8,6 +8,7 @@ class Home extends React.Component {
         
         this.state = {
             result: {},
+            timer: 10,
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -65,6 +66,9 @@ class Home extends React.Component {
         return (
             <Fragment>
                 <div className="spacer-50"></div>
+                <div>
+                    <p>{ this.state.timer }</p>
+                </div>
                 <div className="row">
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
