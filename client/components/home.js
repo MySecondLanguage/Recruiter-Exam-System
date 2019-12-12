@@ -30,7 +30,7 @@ class Home extends React.Component {
         apiHelper.getQuestionList().then((response) => {
             // handle success
             this.props.dispatch({ type: 'GET', response })
-            this.continueOnTimeOut(response.data.total_duration);
+            this.continueOnTimeOut(response.data.total_second);
             
           }, () => {
              // handle error
