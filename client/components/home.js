@@ -19,17 +19,18 @@ class Home extends React.Component {
         
     }
 
-    continueOnTimeOut = () => {
+    continueOnTimeOut = (time) => {
         setTimeout(() => {
-            this.inputElement.click();
-          }, 8000);
+            // this.inputElement.click();
+            console.log('reloaded', time)
+          }, time);
     }
 
     getQuestion() {
         apiHelper.getQuestionList().then((response) => {
             // handle success
             this.props.dispatch({ type: 'GET', response })
-            this.continueOnTimeOut();
+            this.continueOnTimeOut(response.data.total_duration);
             
           }, () => {
              // handle error
