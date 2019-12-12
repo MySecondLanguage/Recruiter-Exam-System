@@ -18,16 +18,19 @@ class Home extends React.Component {
         
     }
 
+    getQuestion() {
+        apiHelper.getQuestionList().then((response) => {
+            // handle success
+            this.props.dispatch({ type: 'GET', response }) 
+          }, () => {
+             // handle error
+             
+          });
+    }
+
 
     componentDidMount(){
-        // get user list on reload the page
-         apiHelper.getQuestionList().then((response) => {
-           // handle success
-           this.props.dispatch({ type: 'GET', response }) 
-         }, () => {
-            // handle error
-            
-         });
+         this.getQuestion()
      }
 
      handleChange(event) {
