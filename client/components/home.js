@@ -52,17 +52,6 @@ class Home extends React.Component {
         apiHelper.setResult(result).then((response) => {
             // console.log(response);
         })
-        // const choice_1 = this.state.choice ? this.state.choice : false
-        // var choice_2 = 'none'
-        // var choice_3 = 'none'
-        // var choice_4 = 'none'
-
-        
-
-        // // console.log(data);
-        // apiHelper.setResult(question, choice_1, choice_2, choice_3, choice_4).then((response) => {
-        //     // console.log(response)
-        // })
       }
 
 
@@ -74,14 +63,14 @@ class Home extends React.Component {
             <Fragment>
                 <div className="spacer-50"></div>
                 <div className="row">
-                    <div className="col-md-3"></div>
-                    <div className="col-md-6">
+                    <div className="col-md-1"></div>
+                    <div className="col-md-10">
                         <form onSubmit={this.handleSubmit} className="exam-form">
                             <h1 className="q-title">{ question.title }</h1>
                             <hr></hr>
-                            <div>
+                            <div className="checkbox-main-container">
                                 {question.choices ? question.choices.map((choice, index) => (
-                                    <div key={index}>
+                                    <div className="checkbox-container" key={index}>
                                         
                                         <input
                                             id={index}
@@ -94,13 +83,13 @@ class Home extends React.Component {
                                     </div>
                                 )) : <p>no choices are loaded yet, please try again</p>}
                             </div>
-                            <button className="btn btn-primary">Save Answer</button>
+                            <button className="btn btn-primary">Submit</button>
                             <div>
                                
                             </div>
                         </form>
                     </div>
-                    <div className="col-md-3"></div>
+                    <div className="col-md-1"></div>
                 </div>
             </Fragment>
         );
