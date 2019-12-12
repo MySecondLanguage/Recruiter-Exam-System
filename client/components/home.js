@@ -20,6 +20,7 @@ class Home extends React.Component {
     }
 
     continueOnTimeOut = (time) => {
+        time = parseInt(time) * 1000
         setTimeout(() => {
             // this.inputElement.click();
             console.log('reloaded', time)
