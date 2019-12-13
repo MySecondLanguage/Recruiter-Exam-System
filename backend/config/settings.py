@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'exam',
     'result',
     'examapi',
+    'dashboard',
     'rest_framework',
 ]
 
