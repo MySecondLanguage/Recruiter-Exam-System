@@ -111,8 +111,8 @@ class Home extends React.Component {
                             <div>
                                
                             </div>
-                        </form> : <div>
-                            <p>Hi, You can see the results now</p>
+                        </form> : <div className="text-center">
+                            <p>No questions are remained to answer</p>
                         </div> }
                         
                     </div>
