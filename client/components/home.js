@@ -83,7 +83,7 @@ class Home extends React.Component {
         return (
             <Fragment>
                 <div className="spacer-50"></div>
-                <div>
+                <div className="countdown">
                     <CountDown second={this.state.timer} />
                 </div>
                 <div className="row">

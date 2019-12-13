@@ -1,17 +1,34 @@
+$default-color: #57C074;
+
 .spacer-50 {
     height: 50px;
 }
 
 .exam-form {
     border: 3px;
-    border-color: black;
+    border-color: $default-color;
     border-style: dotted;
     border-radius: 5px;
     padding: 50px;
+}
+
+.btn {
+    background-color: $default-color;
 }
 
 .q-title{
     // text-align: center;
     font-weight: bold;
     font-size: x-large;
+}
+
+.countdown {
+    text-align: center;
+    padding: 20px;
+    color: red;
+}
+
+.countdown p {
+    font-size: x-large;
+    font-weight: bold;
 }

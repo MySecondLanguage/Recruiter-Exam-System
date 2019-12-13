@@ -61,9 +61,9 @@ class CountDown extends React.Component {
 
     render() {       
         return (
-            <span>
+            <p>
                 {this.format(this.state.second)}
-            </span>
+            </p>
         );
     }
 }
