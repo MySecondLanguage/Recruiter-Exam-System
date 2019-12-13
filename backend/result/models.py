@@ -16,3 +16,8 @@ class Result(models.Model):
     marks = models.IntegerField(
         default=0
     )
+
+    elapsed = models.DurationField(
+        null=True,
+        blank=True
+    )

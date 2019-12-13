@@ -10,6 +10,7 @@ class Home extends React.Component {
         this.state = {
             result: {},
             timer: 0,
+            startTime: null
         };
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -30,6 +31,13 @@ class Home extends React.Component {
         
     }
 
+    elpased = (startTime) => {
+        var endTime = new Date();
+        var elapsedMilliSecond = endTime - startTime;
+        var elapsed = Math.round(elapsedMilliSecond / 1000);
+        return elapsed;
+    }
+
     getQuestion() {
         apiHelper.getQuestionList().then((response) => {
             // handle success
@@ -41,8 +49,12 @@ class Home extends React.Component {
             
           }, () => {
              // handle error
-             
           });
+
+        this.setState({
+            startTime: new Date(),
+        })
+        
     }
 
 
@@ -61,18 +73,20 @@ class Home extends React.Component {
 
       handleSubmit(event) {
         //   this.getQuestion()
-        // event.preventDefault();
+        event.preventDefault();
         
         const result = {
             question: this.props.question.id,
             answer: Object.keys(this.state.result).map((key) => (
                 parseInt(this.state.result[key])
-            ))
+            )),
+            elapsed: this.elpased(this.state.startTime),
         }
 
         apiHelper.setResult(result).then((response) => {
             // console.log(response);
         })
+
       }
 
 

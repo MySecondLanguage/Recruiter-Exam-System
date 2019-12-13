@@ -64,12 +64,14 @@ class CreateResult(CreateAPIView):
             marks = 1
         else:
             marks = 0
-        
+    
         result_data = {
             'question': request.data['question'],
             'marks': marks,
-            'user': request.user.id
+            'user': request.user.id,
+            'elapsed': request.data['elapsed']
         }
+        
         serializer = self.get_serializer(data=result_data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
