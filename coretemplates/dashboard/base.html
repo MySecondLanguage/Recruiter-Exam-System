@@ -39,8 +39,8 @@
                     <p><img src="{% static 'dashboard/assets/small details.png' %}"> <span class="link-title">Professional Details</span></p>
                 </a>
 
-                <a class="inactive-link" href="document.html">
-                    <p><img src="{% static 'dashboard/assets/small documents.png' %}"> <span class="link-title">My Document</span></p>
+                <a class="inactive-link" href="{% url 'dashboard.question_pool' %}">
+                    <p><img src="{% static 'dashboard/assets/small documents.png' %}"> <span class="link-title">Questoin Pool</span></p>
                 </a>
 
                 <a class="active-link" href="setting.html">

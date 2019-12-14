@@ -20,3 +20,6 @@ from account.models import (
 def home(request):
     return render(request, 'dashboard/index.html')
 
+def question_pool(request):
+    return render(request, 'dashboard/question-pool.html')
+
