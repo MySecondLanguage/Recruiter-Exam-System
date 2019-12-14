@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
-  <title>RECRUITER EXAM SYSTEM !!</title>
+  <title>Practioner Templates !!</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'dashboard/css/style.css' %}">
-    {% block style %} {% endblock %}
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -15,8 +13,12 @@
 
     <!-- header to started -->
     <div class="row header-top zero-margin-padding">
+        <div style="text-align: center;" class="col-md-12">
+            <img class="logo" src="assets/logo.png">
+        </div>
+
         <div class="col-md-12 header-title">
-            <h1>RECRUITER EXAM SYSTEM</h1>
+            <h1>Manage your details</h1>
         </div>
        
     </div>
@@ -28,31 +30,32 @@
         <!-- sidebar started -->
         <div class="col-md-3 col-sm-5 zero-margin-padding side-bar">
             <div class="head-shot">
-                <img src="{% static 'dashboard/assets/headshot.png' %}">
+                <img src="assets/headshot.png">
 
                 <h2>Jhon Doe</h2>
-                <p>You signed as Admin</p>
+                <p>Registered Nurs (Div 1)</p>
+                <p>AP1455525</p>
             </div>
 
             <div class="menu">
                 <a class="inactive-link" href="details.html">
-                    <p><img src="{% static 'dashboard/assets/small details.png' %}"> <span class="link-title">Professional Details</span></p>
+                    <p><img src="assets/small details.png"> <span class="link-title">Professional Details</span></p>
                 </a>
 
                 <a class="inactive-link" href="document.html">
-                    <p><img src="{% static 'dashboard/assets/small documents.png' %}"> <span class="link-title">My Document</span></p>
+                    <p><img src="assets/small documents.png"> <span class="link-title">My Document</span></p>
                 </a>
 
-                <a class="active-link" href="setting.html">
-                    <p> <img src="{% static 'dashboard/assets/small settings.png' %}"> <span class="link-title">Account Settings</span></p>
+                <a class="inactive-link" href="setting.html">
+                    <p> <img src="assets/small settings.png"> <span class="link-title">Account Settings</span></p>
                 </a>
 
-                <a class="inactive-link" href="help.html">
-                    <p> <img src="{% static 'dashboard/assets/small help.png' %}"> <span class="link-title">Help</span></p>
+                <a class="active-link" href="help.html">
+                    <p> <img src="assets/small help.png"> <span class="link-title">Help</span></p>
                 </a>
 
                 <a class="inactive-link" href="#">
-                    <p style="color: red;"><img src="{% static 'dashboard/assets/signout.png' %}"> <span class="link-title">Sign Out</span></p>
+                    <p style="color: red;"><img src="assets/signout.png"> <span class="link-title">Sign Out</span></p>
                 </a>
 
             </div>
@@ -61,9 +64,27 @@
 
         <!-- content inside -->
         <div class="col-md-9 col-sm-7">
-            {% block subheader %} {% endblock %}
+            <div class="title-paper">
+                <h1 class="title"><img class="big-icon" src="assets/big help.png"> Help</h1>
+                <p class="msg">Ask us Anything</p>
+            </div>
 
-            {% block content %} {% endblock %}
+            <form class="row form-field zero-margin-padding">
+
+                <div class="col-md-12">
+                    <div class="row field-row">
+                        
+                            <p style="font-weight: bold;">Submit your query, We will respond in 24 hours</p>
+                            <textarea class="col-md-8"></textarea>
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-12 img-btn">
+                    <a href=""><img src="assets/SEND button.png"></a>
+                </div>
+
+            </form>
         </div>
         <!-- content inside ended -->
     </div>
@@ -74,6 +95,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-{% block js %} {% endblock %}
 </body>
 </html>
