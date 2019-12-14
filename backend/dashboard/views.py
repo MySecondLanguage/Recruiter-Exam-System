@@ -28,7 +28,6 @@ def question_pool(request):
     topic = Topic.objects.all()
     context['topics'] = topic
 
-    print(request.GET.keys(), '-------------------------------------')
     if request.GET:
         topic_to_query=list(request.GET.keys())
         questions_by_topic = Topic.objects.filter(
@@ -47,6 +46,16 @@ def question_pool(request):
         # }
 
         context['topic_question'] = questions_by_topic
+
+    if request.POST:
+        q_id = list(request.POST.keys())
+        del q_id[0]
+
+        for q in q_id:
+            QuestionGroup.objects.create(
+                exam=request.current_exam,
+                question=Question.objects.get(id=q)
+            )
         
     return render(request, 'dashboard/question-pool.html', context)
 
