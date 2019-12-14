@@ -6,6 +6,9 @@ class Topic(models.Model):
         max_length=50
     )
 
+    def __str__(self):
+        return self.name
+
 class Choice(models.Model):
     choice_text = models.CharField(
         max_length=200
@@ -21,7 +24,8 @@ class Question(models.Model):
     )
     topic = models.ForeignKey(
         Topic,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name="questions_by_topic"
     )
     total_duration = models.DurationField(
         default=30
@@ -30,6 +34,9 @@ class Question(models.Model):
         Choice,
         through='QuestionChoice'
     )
+
+    def __str__(self):
+        return self.title
 
 class QuestionChoice(models.Model):
     question = models.ForeignKey(
@@ -55,6 +62,9 @@ class Exam(models.Model):
     is_published = models.BooleanField(
         default=True
     )
+
+    def __str__(self):
+        return self.name
 
 class QuestionGroup(models.Model):
     exam = models.ForeignKey(
