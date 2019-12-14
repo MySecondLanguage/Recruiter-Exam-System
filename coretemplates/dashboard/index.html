@@ -28,31 +28,43 @@ SECTION > DIV + DIV {
 
 {% block content %}
 
-<div class="row">
+<div class="row padding-10">
     <div class="col-md-12">
-        <section>
+        
+        <div class="multiselect-container">
+            
             <div>
-                <select id="leftValues" size="10" multiple>
-                    <option>12</option>
-                    <option>22</option>
-                    <option>32</option>
-                </select>
+                <form>
+                    <div class="topic">
+                        <h1>HTML</h1>
+                        <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                    </div>
+
+                    <div class="topic">
+                        <h1>CSS</h1>
+                        <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
             </div>
-            <div>
-                <input type="button" id="btnLeft" value="&lt;&lt;" />
-                <input type="button" id="btnRight" value="&gt;&gt;" />
-            </div>
-            <div>
-                <select id="rightValues" size="10" multiple>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <div>
-                    <input type="text" id="txtRight" />
-                </div>
-            </div>
-        </section>
+
+        </div>
+
     </div>
 </div>
 

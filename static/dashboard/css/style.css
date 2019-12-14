@@ -124,3 +124,22 @@
 }
 
 
+/* all the page wise style are given below */
+
+.multiselect-container {
+    background-color: #F1F8FF;
+    border-radius: 10px;
+    border-style: dashed;
+    border-color: #7BAEE4;
+    height: auto;
+    padding: 10px;
+}
+
+.padding-10 {
+    padding: 40px;
+}
+
+.topic h1 {
+    font-size: large;
+    font-weight: bold;
+}
