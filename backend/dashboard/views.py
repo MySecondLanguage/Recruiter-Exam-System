@@ -18,5 +18,5 @@ from account.models import (
 )
 
 def home(request):
-    return HttpResponse('hello world')
+    return render(request, 'dashboard/index.html')
 
