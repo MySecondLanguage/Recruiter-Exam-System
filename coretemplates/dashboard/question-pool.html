@@ -3,23 +3,6 @@
 {% block style %}
 
 <style>
-SELECT, INPUT[type="text"] {
-    width: 160px;
-    box-sizing: border-box;
-}
-SECTION {
-    padding: 8px;
-    background-color: #f0f0f0;
-    overflow: auto;
-}
-SECTION > DIV {
-    float: left;
-    padding: 4px;
-}
-SECTION > DIV + DIV {
-    width: 40px;
-    text-align: center;
-}
 
 </style>
 
@@ -35,29 +18,17 @@ SECTION > DIV + DIV {
             
             <div>
                 <form>
+                    {% for topic in topics %}
                     <div class="topic">
-                        <h1>HTML</h1>
-                        <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
+                        <h1>{{ topic.name }}</h1>
+                        {% for question in topic.questions_by_topic.all %}
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            <label class="form-check-label" for="exampleCheck1">{{ question.title }}</label>
                         </div>
+                        {% endfor %}
                     </div>
-
-                    <div class="topic">
-                        <h1>CSS</h1>
-                        <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                    </div>
+                    {% endfor %}
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
@@ -74,20 +45,5 @@ SECTION > DIV + DIV {
 
 
 {% block js %}
-  <script type="text/javascript">
-    $("#btnLeft").click(function () {
-    var selectedItem = $("#rightValues option:selected");
-    $("#leftValues").append(selectedItem);
-    });
-
-    $("#btnRight").click(function () {
-        var selectedItem = $("#leftValues option:selected");
-        $("#rightValues").append(selectedItem);
-    });
-
-    $("#rightValues").change(function () {
-        var selectedItem = $("#rightValues option:selected");
-        $("#txtRight").val(selectedItem.text());
-    });
-</script>
+  
 {% endblock %}
