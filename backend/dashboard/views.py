@@ -66,4 +66,8 @@ def question_pool(request):
         HttpResponse('You are not allowed to acccess to this page')
 
 
+def settings(request):
+    return render(request, 'dashboard/settings.html')
+
+
 
