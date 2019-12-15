@@ -3,7 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from django.urls import reverse
+
+from account.models import Profile
+from account.enum_helper import UserType
 
 def home(request):
     if request.POST:
@@ -16,6 +18,10 @@ def home(request):
             username,
             email,
             password
+        )
+        Profile.objects.create(
+            user=created_user,
+            user_type=UserType.EXAMINEE.value
         )
 
         user = authenticate(request, username=username, password=password)

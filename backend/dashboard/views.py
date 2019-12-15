@@ -21,43 +21,49 @@ from account.models import (
 )
 
 def home(request):
-    return render(request, 'dashboard/index.html')
+    if request.user.is_superuser:
+        return render(request, 'dashboard/index.html')
+    else:
+        return HttpResponse('You are not allowed to access to this page')
 
 def question_pool(request):
-    context = {}
-    topic = Topic.objects.all()
-    context['topics'] = topic
+    if request.user.is_superuser:
+        context = {}
+        topic = Topic.objects.all()
+        context['topics'] = topic
 
-    if request.GET:
-        topic_to_query=list(request.GET.keys())
-        questions_by_topic = Topic.objects.filter(
-        name__in=topic_to_query
-        ).prefetch_related(
-            'questions_by_topic'
-        )
-
-        # """
-        # WE SHOULD CONSTRUCT RESULT LIKE THIS BELOW IF YOU WANT TO QUERY IN TEMPLATE LABEL
-        # {% for question in topic.questions_by_topic.all %}
-        # """
-        # result = {
-        #     t.name: [{'id': q.id, 'title': q.title} for q in t.questions_by_topic.all()]
-        #     for t in questions_by_topic
-        # }
-
-        context['topic_question'] = questions_by_topic
-
-    if request.POST:
-        q_id = list(request.POST.keys())
-        del q_id[0]
-
-        for q in q_id:
-            QuestionGroup.objects.create(
-                exam=request.current_exam,
-                question=Question.objects.get(id=q)
+        if request.GET:
+            topic_to_query=list(request.GET.keys())
+            questions_by_topic = Topic.objects.filter(
+            name__in=topic_to_query
+            ).prefetch_related(
+                'questions_by_topic'
             )
-        
-    return render(request, 'dashboard/question-pool.html', context)
+
+            # """
+            # WE SHOULD CONSTRUCT RESULT LIKE THIS BELOW IF YOU WANT TO QUERY IN TEMPLATE LABEL
+            # {% for question in topic.questions_by_topic.all %}
+            # """
+            # result = {
+            #     t.name: [{'id': q.id, 'title': q.title} for q in t.questions_by_topic.all()]
+            #     for t in questions_by_topic
+            # }
+
+            context['topic_question'] = questions_by_topic
+
+        if request.POST:
+            q_id = list(request.POST.keys())
+            del q_id[0]
+
+            for q in q_id:
+                QuestionGroup.objects.create(
+                    exam=request.current_exam,
+                    question=Question.objects.get(id=q)
+                )
+            
+        return render(request, 'dashboard/question-pool.html', context)
+    else:
+        HttpResponse('You are not allowed to acccess to this page')
 
 
 
