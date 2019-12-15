@@ -1,0 +1,25 @@
+
+.spacer-150 {
+    height: 150px;
+}
+
+.start-exam {
+    text-align: center;
+    width: fit-content;
+    margin-left: 50px;
+}
+
+.start-exam h1 {
+    font-size: x-large;
+    font-weight: bold;
+    border: 3px;
+    border-color: #57C074;
+    border-style: dotted;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.exam-name {
+    font-weight: normal;
+    color: #57C074;
+}
