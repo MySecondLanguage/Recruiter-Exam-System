@@ -12,17 +12,36 @@
 
 <div class="container">
   <div class="spacer-150"></div>
+  
   <div class="row">
     <div class="col-md-12">
       <div class="start-exam">
+        {% if request.current_exam %}
         <h1>Current Exam : <span class="exam-name">{{ request.current_exam }}</span></h1>
+        <hr>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name">
+          </div>
+    
+          <button type="submit" class="btn btn-danger">Get Started</button>
+          {% else %}
+          <h1>No Published Exam Available at this moment, please try again later</h1>
+          {% endif %}
+        </form>
       </div>
     </div>
   </div>
+  
 </div>
 
-<footer class="container">
-  <p>Footer Text</p>
+<footer class="container fixed-bottom">
+  <p>By Anamul Hoq</p>
 </footer>
 
 </body>

@@ -7,19 +7,25 @@
     text-align: center;
     width: fit-content;
     margin-left: 50px;
+    border: 3px;
+    border-color: #57C074;
+    border-style: dotted;
+    border-radius: 5px;
+    padding: 20px;
 }
 
 .start-exam h1 {
     font-size: x-large;
     font-weight: bold;
-    border: 3px;
-    border-color: #57C074;
-    border-style: dotted;
-    border-radius: 5px;
-    padding: 5px;
 }
 
 .exam-name {
     font-weight: normal;
     color: #57C074;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
 }
