@@ -67,7 +67,18 @@ def question_pool(request):
 
 
 def settings(request):
-    return render(request, 'dashboard/settings.html')
+    exams = Exam.objects.all()
+    context = {'exams': exams}
+    if request.method == 'POST':
+        for exam in exams:
+            exam.is_published = False
+            exam.save()
+        
+        current_exam_will_be = Exam.objects.get(id=str(request.POST['exam']))
+        current_exam_will_be.is_published = True
+        current_exam_will_be.save()
+
+    return render(request, 'dashboard/settings.html', context)
 
 
 
