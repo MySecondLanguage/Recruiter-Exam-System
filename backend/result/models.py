@@ -45,6 +45,10 @@ class ResultSummery(models.Model):
         on_delete=models.CASCADE
     )
     total_marks = models.IntegerField()
+    total_elapsed_second = models.IntegerField(
+        null=True,
+        blank=True
+    )
 
     def __str__ (self):
         return self.exam.name
@@ -60,25 +64,32 @@ def update_result_summery(sender, instance, created, **kwargs):
             user__id=instance.user.id
         ).exists()
 
-        print(summery_exists, '--------sumery edist-----------------')
-
 
         if summery_exists:
             summery = ResultSummery.objects.get(
                 exam__id=current_exam.id,
                 user__id=instance.user.id
             )
+
+            prev_elapsed = int(summery.total_elapsed_second)
+            h, m, s = str(instance.elapsed).split(':')
+            new_elapased = int(h) * 3600 + int(m) * 60 + int(s)
+
             prev_total = int(summery.total_marks)
             new_total = prev_total + int(instance.marks)
             summery.total_marks = new_total
+            summery.total_elapsed_second = prev_elapsed + new_elapased
             summery.save()
 
 
         else:
+            h, m, s = instance.elapsed.split(':')
+            elapsed = int(h) * 3600 + int(m) * 60 + int(s)
             ResultSummery.objects.create(
                 user=instance.user,
                 exam=current_exam,
                 total_marks=instance.marks,
+                total_elapsed_second=elapsed,
                 is_exam_completed=False
             )
 
