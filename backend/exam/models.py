@@ -16,6 +16,8 @@ class Choice(models.Model):
     is_right_choice = models.BooleanField(
         default=False
     )
+    def __str__(self):
+        return self.choice_text
 
 
 class Question(models.Model):
@@ -47,6 +49,8 @@ class QuestionChoice(models.Model):
         Choice,
         on_delete=models.CASCADE
     )
+    def __str__ (self):
+        return self.choice.choice_text
 
 class Exam(models.Model):
     name = models.CharField(
