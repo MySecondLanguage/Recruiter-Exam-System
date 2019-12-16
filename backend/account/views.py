@@ -24,7 +24,7 @@ def home(request):
             user_type=UserType.EXAMINEE.value
         )
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, username=username, password=password)
         if user is not None:
             login(request, user)
         return redirect('exam')

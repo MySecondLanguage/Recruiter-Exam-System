@@ -12,6 +12,16 @@ from result.models import (
     Result
 )
 
+from django.contrib.auth.models import User
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+        ]
+
 
 
 class ChoiceSerializer(ModelSerializer):
@@ -45,6 +55,7 @@ class ResultCreateSerializer(ModelSerializer):
 
 
 class ResultSummerySerializer(ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = ResultSummery
         fields = '__all__'
