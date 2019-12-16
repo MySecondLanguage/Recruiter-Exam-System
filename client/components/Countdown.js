@@ -62,7 +62,7 @@ class CountDown extends React.Component {
     render() {       
         return (
             <p>
-                {this.format(this.state.second)}
+                {this.props.second ? this.format(this.state.second) : <span>Exam Finished..</span>}
             </p>
         );
     }
