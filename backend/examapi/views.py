@@ -95,6 +95,11 @@ class ResultSummeryView(ListAPIView):
 
     def get_queryset(self):
     
-        queryset = ResultSummery.objects.all()
+        queryset = ResultSummery.objects.filter(
+            exam__id=self.request.current_exam.id
+        ).order_by(
+            '-total_marks',
+            'total_elapsed_second'
+        )
         
         return queryset
