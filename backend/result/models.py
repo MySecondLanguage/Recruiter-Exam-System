@@ -40,7 +40,7 @@ class ResultSummery(models.Model):
         on_delete=models.CASCADE
     )
     is_exam_completed = models.BooleanField(default=False)
-    exam = models.OneToOneField(
+    exam = models.ForeignKey(
         Exam,
         on_delete=models.CASCADE
     )
@@ -55,17 +55,25 @@ def update_result_summery(sender, instance, created, **kwargs):
     if created:
         current_exam = Exam.objects.get(is_published=True)
 
-        summery_exists = ResultSummery.objects.filter(exam__id=current_exam.id).exists()
+        summery_exists = ResultSummery.objects.filter(
+            exam__id=current_exam.id,
+            user__id=instance.user.id
+        ).exists()
+
+        print(summery_exists, '--------sumery edist-----------------')
 
 
         if summery_exists:
-            summery = ResultSummery.objects.get(exam__id=current_exam.id)
+            summery = ResultSummery.objects.get(
+                exam__id=current_exam.id,
+                user__id=instance.user.id
+            )
             prev_total = int(summery.total_marks)
             new_total = prev_total + int(instance.marks)
             summery.total_marks = new_total
             summery.save()
 
-            
+
         else:
             ResultSummery.objects.create(
                 user=instance.user,
