@@ -34,28 +34,7 @@
                 <p>You signed as Admin</p>
             </div>
 
-            <div class="menu">
-                <a class="inactive-link" href="details.html">
-                    <p><img src="{% static 'dashboard/assets/small details.png' %}"> <span class="link-title">Professional Details</span></p>
-                </a>
-
-                <a class="inactive-link" href="{% url 'dashboard.question_pool' %}">
-                    <p><img src="{% static 'dashboard/assets/small documents.png' %}"> <span class="link-title">Questoin Pool</span></p>
-                </a>
-
-                <a class="active-link" href="{% url 'dashboard.settings' %}">
-                    <p> <img src="{% static 'dashboard/assets/small settings.png' %}"> <span class="link-title">Exam Settings</span></p>
-                </a>
-
-                <a class="inactive-link" href="help.html">
-                    <p> <img src="{% static 'dashboard/assets/small help.png' %}"> <span class="link-title">Help</span></p>
-                </a>
-
-                <a class="inactive-link" href="#">
-                    <p style="color: red;"><img src="{% static 'dashboard/assets/signout.png' %}"> <span class="link-title">Sign Out</span></p>
-                </a>
-
-            </div>
+            {% block menu %} {% endblock %}
         </div>
         <!-- sidebar ended -->
 
