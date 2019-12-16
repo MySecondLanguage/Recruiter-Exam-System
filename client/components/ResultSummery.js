@@ -27,22 +27,29 @@ class ResultSummery extends React.Component {
     render() { 
         return (
             <Fragment>
-                <p>You have taken the exam already, Here is the score</p>
-                <h4>Find yourself where you positioned</h4>
+                <div className="text-center">
+                    <p>You have taken the exam already, Here is the score</p>
+                    <h4>Find yourself where you positioned</h4>
+                </div>
+                
                 <hr></hr>
                 <table className="table">
                     <thead>
                         <tr>
-                        <th scope="col">Rank</th>
-                        <th scope="col">Username</th>
+                        <th># Rank</th>
+                        <th>Username</th>
+                        <th>Total Marks</th>
+                        <th>Elapsed</th>
                         
                         </tr>
                     </thead>
                     <tbody>
                         {this.props.summeries.map((summery, index) => (
                             <tr key={index}>
-                                <th>{index}</th>
+                                <th>{index + 1}</th>
                                 <td>{summery.user.username}</td>
+                                <td>{summery.total_marks}</td>
+                                <td>{summery.total_elapsed_second} Seconds</td>
                                 
                             </tr>
                         ))}
