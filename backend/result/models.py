@@ -83,7 +83,7 @@ def update_result_summery(sender, instance, created, **kwargs):
 
 
         else:
-            h, m, s = instance.elapsed.split(':')
+            h, m, s = str(instance.elapsed).split(':')
             elapsed = int(h) * 3600 + int(m) * 60 + int(s)
             ResultSummery.objects.create(
                 user=instance.user,
