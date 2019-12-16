@@ -17,6 +17,7 @@ const apiUrl = `${rootUrl}${subUrl}`
 const apiHelper = {
     getQuestionList: () => axios.get(`${apiUrl}question-list/`),
     setResult: (data, params={}) => axios.post(`${apiUrl}create-result/`, data, {params}),
+    getResultSummery: () => axios.get(`${apiUrl}result-summery/`),
 };
 
 export default apiHelper;
