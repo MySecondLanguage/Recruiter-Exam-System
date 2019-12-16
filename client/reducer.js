@@ -1,5 +1,6 @@
 var initialState = {
     question: {},
+    summery: [],
   };
   
   var Reducer = (state = initialState, action) => {
@@ -9,6 +10,12 @@ var initialState = {
         return {
           ...state,
           question: action.response.data,
+        }
+      
+      case 'GETRESULT':
+        return {
+          ...state,
+          summery: [...action.response.data],
         }
 
       default:

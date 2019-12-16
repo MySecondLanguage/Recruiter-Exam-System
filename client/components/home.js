@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import apiHelper from '../apiHelper';
 // import Timer from '../components/Timer'
 import CountDown from '../components/Countdown';
+import ResultSummery from '../components/ResultSummery';
 class Home extends React.Component {
     constructor() {
         super();
@@ -126,7 +127,7 @@ class Home extends React.Component {
                                
                             </div>
                         </form> : <div className="text-center">
-                            <p>No questions are remained to answer</p>
+                            <ResultSummery />
                         </div> }
                         
                     </div>
