@@ -74,7 +74,7 @@ class Home extends React.Component {
 
       handleSubmit(event) {
         //   this.getQuestion()
-        event.preventDefault();
+        // event.preventDefault();
         
         const result = {
             question: this.props.question.id,
@@ -126,7 +126,7 @@ class Home extends React.Component {
                             <div>
                                
                             </div>
-                        </form> : <div className="text-center">
+                        </form> : <div className="">
                             <ResultSummery />
                         </div> }
                         

@@ -24,10 +24,12 @@ class ResultSummery extends React.Component {
     }
 
 
-    render() {    
-        console.log(this.props.summeries)   
+    render() { 
         return (
             <Fragment>
+                <p>You have taken the exam already, Here is the score</p>
+                <h4>Find yourself where you positioned</h4>
+                <hr></hr>
                 <table className="table">
                     <thead>
                         <tr>
