@@ -14,13 +14,18 @@ from rest_framework.views import APIView
 from exam.models import (
     Question,
     QuestionGroup,
-    Choice
+    Choice,
+    Exam
 )
 
-from result.models import Result
+from result.models import (
+    ResultSummery,
+    Result
+)
 from examapi.serializers import (
     QuestionSerializer,
-    ResultCreateSerializer
+    ResultCreateSerializer,
+    ResultSummerySerializer
 )
 
 class QuestionListView(RetrieveAPIView):
@@ -37,8 +42,14 @@ class QuestionListView(RetrieveAPIView):
             exam=self.request.current_exam
         ).exclude(
             result__question__id__in=[result]
-        ).first()
-        return queryset
+        )
+
+        # Update result summery if not question remained to answer
+        if not queryset.exists():
+            summery = ResultSummery.objects.get(exam__id=self.request.current_exam.id)
+            summery.is_exam_completed = True
+            summery.save()
+        return queryset.first()
 
 
 
@@ -77,4 +88,13 @@ class CreateResult(CreateAPIView):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class ResultSummeryView(ListAPIView):
+    serializer_class = ResultSummerySerializer
+
+    def get_queryset(self):
+    
+        queryset = ResultSummery.objects.all()
         
+        return queryset

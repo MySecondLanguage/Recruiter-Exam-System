@@ -64,6 +64,8 @@ def update_result_summery(sender, instance, created, **kwargs):
             new_total = prev_total + int(instance.marks)
             summery.total_marks = new_total
             summery.save()
+
+            
         else:
             ResultSummery.objects.create(
                 user=instance.user,
