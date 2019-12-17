@@ -6,8 +6,10 @@ from exam.models import (
     Exam,
     Choice,
     Topic,
-    QuestionChoice
+    QuestionChoice,
+    SelectedChoices
 )
+
 
 
 admin.site.register(Question)
@@ -16,4 +18,5 @@ admin.site.register(Choice)
 admin.site.register(Topic)
 admin.site.register(QuestionGroup)
 admin.site.register(QuestionChoice)
+admin.site.register(SelectedChoices)
 

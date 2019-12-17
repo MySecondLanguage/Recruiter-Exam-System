@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Topic(models.Model):
@@ -18,6 +19,33 @@ class Choice(models.Model):
     )
     def __str__(self):
         return self.choice_text
+
+class SelectedChoices(models.Model):
+    choice = models.ForeignKey(
+        Choice,
+        on_delete=models.CASCADE,
+        related_name='selected_choice'
+    )
+    is_selected = models.BooleanField(default=False)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    exam = models.ForeignKey(
+        'exam.Exam',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
+    )
+    question = models.ForeignKey(
+        'exam.Question',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name="selected_choice"
+    )
 
 
 class Question(models.Model):
