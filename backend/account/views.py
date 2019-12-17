@@ -40,7 +40,10 @@ def home(request):
 
 
 def report(request):
-    # exam = Exam.objects.all().values('id', 'questions__choices')
-    # for e in exam:
-    #     print(e.question, '-------------------------------------------')
-    return render(request, 'frontstage/report.html')
+    context = {}
+    question = Question.objects.filter(
+        exam__id=request.current_exam.id
+    ).prefetch_related('choices')
+    print(question, '-----------------')
+    context['question'] = question
+    return render(request, 'frontstage/report.html', context)

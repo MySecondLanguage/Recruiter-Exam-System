@@ -30,6 +30,12 @@ class Result(models.Model):
         null=True,
         blank=True
     )
+    exam = models.ForeignKey(
+        Exam,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
 
     def __str__ (self):
         return self.question.title
