@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from django.db.models import F, Value, Case, When, BooleanField
+from django.db.models import F, Value, Case, When, BooleanField, Prefetch
 
 from account.models import Profile
 from account.enum_helper import UserType
@@ -42,25 +42,43 @@ def home(request):
         return render(request, 'frontstage/index.html')
 
 
+# def report(request):
+#     context = {}
+
+#     # choices = Choice.objects.annotate(
+#     #     is_selected_choice=Case(
+#     #         When(
+#     #             selected_choice__choice__is_right_choice=True,
+#     #             then=Value(True)
+#     #         ),
+#     #         default=Value(False),
+#     #         output_field=BooleanField()
+#     #     )
+#     # )
+
+#     # print(choices)
+
+#     question = Question.objects.filter(
+#         exam__id=request.current_exam.id
+#     ).prefetch_related('selected_choice')
+#     print(question, '-----------------')
+#     context['question'] = question
+#     return render(request, 'frontstage/report.html', context)
+
+
 def report(request):
     context = {}
 
-    # choices = Choice.objects.annotate(
-    #     is_selected_choice=Case(
-    #         When(
-    #             selected_choice__choice__is_right_choice=True,
-    #             then=Value(True)
-    #         ),
-    #         default=Value(False),
-    #         output_field=BooleanField()
-    #     )
-    # )
+    choices = SelectedChoices.objects.filter(
+        user_id=request.user.id,
+        exam_id=request.current_exam.id
+    )
 
-    # print(choices)
+
+    print(choices)
 
     question = Question.objects.filter(
         exam__id=request.current_exam.id
-    ).prefetch_related('selected_choice')
-    print(question, '-----------------')
+    ).prefetch_related(Prefetch('selected_choice', queryset=choices))
     context['question'] = question
     return render(request, 'frontstage/report.html', context)
