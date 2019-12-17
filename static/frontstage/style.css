@@ -30,3 +30,19 @@
     bottom: 0px;
     text-align: center;
 }
+
+.question-container {
+    border: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: #57C074;
+    text-align: left;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.checkbox {
+    margin-left: 20px;
+}

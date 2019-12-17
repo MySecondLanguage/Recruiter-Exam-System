@@ -30,3 +30,7 @@ def home(request):
         return redirect('exam')
     else:
         return render(request, 'frontstage/index.html')
+
+
+def report(request):
+    return render(request, 'frontstage/report.html')
