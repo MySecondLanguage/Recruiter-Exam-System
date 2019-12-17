@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
+
+from django.db.models import F, Value, Case, When, BooleanField
 
 from rest_framework.generics import (
     ListAPIView,
@@ -15,7 +18,8 @@ from exam.models import (
     Question,
     QuestionGroup,
     Choice,
-    Exam
+    Exam,
+    SelectedChoices
 )
 
 from result.models import (
@@ -83,6 +87,28 @@ class CreateResult(CreateAPIView):
             'elapsed': request.data['elapsed'],
             'exam': request.current_exam.id
         }
+
+        question = Question.objects.get(id=str(request.data['question']))
+
+        choices = question.choices.annotate(
+            is_selected=Case(
+                When(
+                    id__in=[c['id'] for c in answered_choice],
+                    then=Value(True)
+                ),
+                default=Value(False),
+                output_field=BooleanField()
+            )
+        )
+
+        for c in choices:
+            SelectedChoices.objects.create(
+                choice=c,
+                is_selected=c.is_selected,
+                exam_id=str(request.current_exam.id),
+                question_id=str(question.id),
+                user_id=request.user.id
+            )
         
         serializer = self.get_serializer(data=result_data)
         serializer.is_valid(raise_exception=True)

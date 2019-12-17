@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
+from django.db.models import F, Value, Case, When, BooleanField
 
 from account.models import Profile
 from account.enum_helper import UserType
@@ -11,7 +12,9 @@ from exam.models import (
     QuestionGroup,
     QuestionChoice,
     Question,
-    Exam
+    Exam,
+    SelectedChoices,
+    Choice
 )
 
 def home(request):
@@ -41,9 +44,23 @@ def home(request):
 
 def report(request):
     context = {}
+
+    # choices = Choice.objects.annotate(
+    #     is_selected_choice=Case(
+    #         When(
+    #             selected_choice__choice__is_right_choice=True,
+    #             then=Value(True)
+    #         ),
+    #         default=Value(False),
+    #         output_field=BooleanField()
+    #     )
+    # )
+
+    # print(choices)
+
     question = Question.objects.filter(
         exam__id=request.current_exam.id
-    ).prefetch_related('choices')
+    ).prefetch_related('selected_choice')
     print(question, '-----------------')
     context['question'] = question
     return render(request, 'frontstage/report.html', context)
