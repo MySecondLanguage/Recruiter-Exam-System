@@ -59,7 +59,7 @@ class Exam(models.Model):
     total_duration = models.DurationField(
         default=30
     )
-    queston = models.ManyToManyField(
+    question = models.ManyToManyField(
         Question,
         through='QuestionGroup'
     )

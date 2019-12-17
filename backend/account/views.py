@@ -7,6 +7,13 @@ from django.shortcuts import redirect
 from account.models import Profile
 from account.enum_helper import UserType
 
+from exam.models import (
+    QuestionGroup,
+    QuestionChoice,
+    Question,
+    Exam
+)
+
 def home(request):
     if request.POST:
         name = request.POST['name']
@@ -33,4 +40,7 @@ def home(request):
 
 
 def report(request):
+    # exam = Exam.objects.all().values('id', 'questions__choices')
+    # for e in exam:
+    #     print(e.question, '-------------------------------------------')
     return render(request, 'frontstage/report.html')
