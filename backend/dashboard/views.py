@@ -81,4 +81,8 @@ def settings(request):
     return render(request, 'dashboard/settings.html', context)
 
 
+def create_exam(request):
+    return render(request, 'dashboard/create_exam.html')
+
+
 

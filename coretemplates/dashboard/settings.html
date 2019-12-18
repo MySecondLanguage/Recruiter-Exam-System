@@ -29,8 +29,9 @@
                     {% csrf_token %}
 
                     <div class="topic">
-                        <h1>Select a Exam</h1>
-                        <p>( Current Exam Now {{ request.current_exam }} )</p>
+                        <h1>Set your current exam</h1>
+                        <p>( Current Exam: <span style="font-weight: bold;">{{ request.current_exam }}</span> )</p>
+                        <hr>
                         {% for exam in exams %}
                         <div class="form-check">
                             <input type="radio" value="{{exam.id}}" name="exam" class="form-check-input" id="examcheck">
@@ -40,7 +41,8 @@
                     </div>
                     
                     <hr>
-                    <button type="submit" class="btn btn-primary">Save Current Exam</button>
+                    <button type="submit" class="btn btn-outline-success">Save Changes</button>
+                    <a href="{% url 'dashboard.create_exam' %}" class="btn btn-outline-primary">Create New Exam</a>
                 </form>
             </div>
 
