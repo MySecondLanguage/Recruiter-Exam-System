@@ -82,9 +82,22 @@ def settings(request):
 
 
 def create_exam(request):
-    # if request.method == 'GET':
-    #     if request.GET['exam']:
-    #         Exam.objects.create(name=request.GET['exam'])
+    if request.method == 'GET':
+        pass
+    else:
+        if request.POST['duration']:
+            duration = request.POST['duration']
+        else:
+            duration = 0
+        print(request.POST['exam'])
+        exam = Exam.objects.create(
+            name=request.POST['exam'],
+            total_duration=duration
+        )
+        all_exam = Exam.objects.all().exclude(id=exam.id)
+        for i in all_exam:
+            i.is_published = False
+            i.save()
     return render(request, 'dashboard/create_exam.html')
 
 

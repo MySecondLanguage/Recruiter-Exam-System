@@ -29,7 +29,8 @@
                 <p>your current exam is {{ request.current_exam.name }} <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
             {% endif %}
             <div>
-                <form action="/action_page.php">
+                <form method="POST" action="{% url 'dashboard.create_exam' %}">
+                    {% csrf_token %}
                     <div class="form-group">
                       <label for="exam">Exam name:</label>
                       <input type="text" class="form-control" name="exam" id="exam" placeholder="Exam Name">
