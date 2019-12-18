@@ -102,5 +102,16 @@ def create_exam(request):
         return redirect('dashboard.question_pool')
     return render(request, 'dashboard/create_exam.html')
 
+def create_topic(request):
+    if request.method == 'GET':
+        pass
+    else:
+        Topic.objects.create(
+            name=request.POST['name'],
+        )
+        
+        return redirect('dashboard.question_pool')
+    return render(request, 'dashboard/create_topic.html')
+
 
 
