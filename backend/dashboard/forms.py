@@ -16,7 +16,8 @@ class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
         fields = [
-            'title'
+            'title',
+            'total_duration'
         ]
 
 class ChoiceForm(forms.ModelForm):

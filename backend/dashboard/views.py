@@ -115,14 +115,8 @@ def create_topic(request):
 
 
 def create_question_choice(request):
-    if request.method == 'GET':
-        pass
-    else:
-        Topic.objects.create(
-            name=request.POST['name'],
-        )
-        
-        return redirect('dashboard.question_pool')
+    if request.method == 'POST':
+        print(request.POST)
     return render(request, 'dashboard/create_question_choice.html')
 
 

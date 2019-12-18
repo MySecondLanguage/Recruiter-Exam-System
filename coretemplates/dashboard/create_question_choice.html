@@ -17,14 +17,80 @@
 <div class="row padding-10">
 
     <!-- col-md-12 started -->
-    <div style="text-align: center;" class="col-md-6">
+    <div style="text-align: center;" class="col-md-8">
 
 
         
         <!-- question selection started -->
         <div class="multiselect-container">
             <div>
-                <p>hi</p>
+                <form method="POST" action="{% url 'dashboard.create_question_choice' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exam">Question Ttile:</label>
+                      <input type="text" class="form-control" name="title" id="exam" placeholder="Question Title">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="total_duration">Duration (second) : </label>
+                      <input type="number" class="form-control" name="total_duration" id="total_duration" placeholder="Question Duration">
+                    </div>
+                    
+                    <hr>
+
+                    <div style="background-color: skyblue;" class="choice">
+
+                        <div class="row">
+                            <div class="form-check">
+                              <label class="mt-4" class="form-check-label" for="exampleCheck1">Choice Text:</label>
+                              <input class="mt-4" name="choice_text_1" type="text" class="form-check-input" placeholder="choice text" id="exampleCheck1">
+                            </div>
+                            
+                            <div class="form-check">
+                              <input class="mt-4" name="is_right_choice_1" type="checkbox" class="form-check-input" id="exampleCheck1">
+                              <label class="mt-4" class="form-check-label" for="exampleCheck1">True</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-check">
+                            <label class="mt-4" class="form-check-label" for="exampleCheck1">Choice Text:</label>
+                            <input name="choice_text_2" class="mt-4" type="text" class="form-check-input" placeholder="choice text" id="exampleCheck1">
+                          </div>
+                          
+                          <div class="form-check">
+                            <input name="is_right_choice_2" class="mt-4" type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="mt-4" class="form-check-label" for="exampleCheck1">True</label>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-check">
+                          <label class="mt-4" class="form-check-label" for="exampleCheck1">Choice Text:</label>
+                          <input name="choice_text_3" class="mt-4" type="text" class="form-check-input" placeholder="choice text" id="exampleCheck1">
+                        </div>
+                        
+                        <div class="form-check">
+                          <input name="is_right_choice_3" class="mt-4" type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="mt-4" class="form-check-label" for="exampleCheck1">True</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-check">
+                        <label class="mt-4" class="form-check-label" for="exampleCheck1">Choice Text:</label>
+                        <input name="choice_text_4" name="choice_text_4" class="mt-4" type="text" class="form-check-input" placeholder="choice text" id="exampleCheck1">
+                      </div>
+                      
+                      <div class="form-check">
+                        <input name="is_right_choice_4" class="mt-4" type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="mt-4" class="form-check-label" for="exampleCheck1">True</label>
+                      </div>
+                  </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                </form>
             </div>
 
         </div>
