@@ -127,8 +127,43 @@ def create_question_choice(request):
             total_duration=duration,
             topic=Topic.objects.get(id=str(request.POST['topic']))
         )
+
+        form_list = []
+
+        if 'choice_text_1' in request.POST:
+            choice_dict = {'choice_text': request.POST['choice_text_1']}
+            if 'is_right_choice_1' in request.POST:
+                choice_dict['is_right_choice'] = True
+            else:
+                choice_dict['is_right_choice'] = False
+        form_list.append(choice_dict)
+
+        if 'choice_text_2' in request.POST:
+            choice_dict = {'choice_text': request.POST['choice_text_2']}
+            if 'is_right_choice_2' in request.POST:
+                choice_dict['is_right_choice'] = True
+            else:
+                choice_dict['is_right_choice'] = False
+        form_list.append(choice_dict)
+
+        if 'choice_text_3' in request.POST:
+            choice_dict = {'choice_text': request.POST['choice_text_3']}
+            if 'is_right_choice_3' in request.POST:
+                choice_dict['is_right_choice'] = True
+            else:
+                choice_dict['is_right_choice'] = False
+        form_list.append(choice_dict)
+
+        if 'choice_text_4' in request.POST:
+            choice_dict = {'choice_text': request.POST['choice_text_4']}
+            if 'is_right_choice_4' in request.POST:
+                choice_dict['is_right_choice'] = True
+            else:
+                choice_dict['is_right_choice'] = False
+        form_list.append(choice_dict)
+
+        print(form_list, '----------------------------')
+
+
         
     return render(request, 'dashboard/create_question_choice.html', context)
-
-
-
