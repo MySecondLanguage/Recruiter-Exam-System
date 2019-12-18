@@ -61,20 +61,22 @@
                         <div style="margin-bottom: 10px;">
                             <a class="btn btn-success" href="{% url 'dashboard.create_topic' %}">Create A Topic</a>
                         </div>
-                        <div class="selectBox" onclick="showCheckboxes()">
-                            <select>
-                                <option>Select an Topic</option>
-                            </select>
-                            <div class="overSelect"></div>
+                        {% if topics %}
+                            <div class="selectBox" onclick="showCheckboxes()">
+                                <select>
+                                    <option>Select an Topic</option>
+                                </select>
+                                <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes">
+                                {% for t in topics %}
+                                <label for="one">
+                                    <input type="checkbox" value="{{ t.id }}" name="{{ t.name }}" id="{{ t.name }}" />{{ t.name }}</label>
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div id="checkboxes">
-                            {% for t in topics %}
-                            <label for="one">
-                                <input type="checkbox" value="{{ t.id }}" name="{{ t.name }}" id="{{ t.name }}" />{{ t.name }}</label>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Find Question</button>
+                        <button type="submit" class="btn btn-primary">Find Question</button>
+                        {% endif %}
                 </form>
 
             </div>
@@ -93,6 +95,8 @@
         <div class="multiselect-container">
 
             <div>
+                {% if request.current_exam %}
+
                 <form method="POST">
                     {% csrf_token %}
 
@@ -110,6 +114,12 @@
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
+
+                {% else %}
+
+                <h1>You have no current exam</h1>
+                <a href="{% url 'dashboard.create_exam' %}" class="btn btn-warning">Create an Exam Now</a>
+                {% endif %}
             </div>
 
         </div>

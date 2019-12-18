@@ -84,7 +84,7 @@ class Exam(models.Model):
     name = models.CharField(
         max_length=100
     )
-    total_duration = models.IntegerField(
+    total_duration = models.DurationField(
         null=True,
         blank=True
     )

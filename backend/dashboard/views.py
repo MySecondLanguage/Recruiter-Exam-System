@@ -89,9 +89,9 @@ def create_exam(request):
         pass
     else:
         if request.POST['duration']:
-            duration = request.POST['duration']
+            duration = timedelta( days=0, hours=0, minutes=0, seconds=int(request.POST['duration']) )
         else:
-            duration = 0
+            duration = timedelta( days=0, hours=0, minutes=0, seconds=0 )
         print(request.POST['exam'])
         exam = Exam.objects.create(
             name=request.POST['exam'],
@@ -162,7 +162,11 @@ def create_question_choice(request):
                 choice_dict['is_right_choice'] = False
         form_list.append(choice_dict)
 
-        print(form_list, '----------------------------')
+        for form in form_list:
+            QuestionChoice.objects.create(
+                choice=Choice.objects.create(choice_text=form['choice_text'], is_right_choice=form['is_right_choice']),
+                question=question,
+            )
 
 
         
