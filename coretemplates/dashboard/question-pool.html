@@ -82,6 +82,12 @@
         </div>
         <!-- topic selection ended -->
 
+<div style="margin-bottom: 20px;" class="row">
+    <div class="col-md-8">
+        <a class="btn btn-lg btn-success" href="{% url 'dashboard.create_question_choice' %}">Create Question</a>
+    </div>
+</div>
+
         {% if topic_question %}
         <!-- question selection started -->
         <div class="multiselect-container">
