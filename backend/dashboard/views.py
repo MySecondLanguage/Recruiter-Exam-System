@@ -6,6 +6,8 @@ from django.shortcuts import (
 
 from django.db.models import Count
 
+from datetime import timedelta
+
 from exam.models import (
     Choice,
     Exam,
@@ -115,9 +117,18 @@ def create_topic(request):
 
 
 def create_question_choice(request):
+    context = {}
+    topic = Topic.objects.all()
+    context['topics'] = topic
     if request.method == 'POST':
-        print(request.POST)
-    return render(request, 'dashboard/create_question_choice.html')
+        duration = timedelta( days=0, hours=0, minutes=0, seconds=int(request.POST['total_duration']) )
+        question = Question.objects.create(
+            title=request.POST['title'],
+            total_duration=duration,
+            topic=Topic.objects.get(id=str(request.POST['topic']))
+        )
+        
+    return render(request, 'dashboard/create_question_choice.html', context)
 
 
 
