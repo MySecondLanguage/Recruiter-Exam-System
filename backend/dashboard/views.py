@@ -1,6 +1,7 @@
 from django.shortcuts import (
     render,
-    HttpResponse
+    HttpResponse,
+    redirect
 )
 
 from django.db.models import Count
@@ -98,6 +99,7 @@ def create_exam(request):
         for i in all_exam:
             i.is_published = False
             i.save()
+        return redirect('dashboard.question_pool')
     return render(request, 'dashboard/create_exam.html')
 
 
