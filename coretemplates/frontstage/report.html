@@ -13,7 +13,7 @@
                 <div class="checkbox">
                     <input class="form-check-input"  {% if c.is_selected %} checked {% else %}  {% endif %}  type="checkbox" value="" id="defaultCheck1" disabled>
                     <label class="form-check-label" for="defaultCheck1">
-                        {{ c.choice.choice_text }} {% if c.choice.is_right_choice %} <span>Green</span> {% else %}  {% endif %}
+                        {% if c.choice.is_right_choice %} <span class="green">{{ c.choice.choice_text }}</span> {% elif c.is_selected and not c.choice.is_right_choice %} <span class="red">{{ c.choice.choice_text }}</span>  {% else %} <span>{{ c.choice.choice_text }}</span>  {% endif %}
                     </label>
                 </div>
             {% endfor %}
