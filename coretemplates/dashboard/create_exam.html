@@ -17,7 +17,7 @@
 <div class="row padding-10">
 
     <!-- col-md-12 started -->
-    <div style="text-align: center;" class="col-md-12">
+    <div style="text-align: center;" class="col-md-6">
 
 
         
@@ -29,13 +29,18 @@
                 <p>your current exam is {{ request.current_exam.name }} <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
             {% endif %}
             <div>
-                <form action="{% url 'dashboard.create_exam' %}" method="get">
-                    {% csrf_token %}
-
-                    <input name="exam" type="text" placeholder="Exam name..">
+                <form action="/action_page.php">
+                    <div class="form-group">
+                      <label for="exam">Exam name:</label>
+                      <input type="text" class="form-control" name="exam" id="exam" placeholder="Exam Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="duration">Total Duration (seconds) :</label> <br>
+                      <small>We recomend you to keep it blank, so total duration will be calculated by total question duration</small>
+                      <input name="duration" type="number" class="form-control" id="duration" placeholder="Insert duration (Second only)">
+                    </div>
                     
-                    
-                    <button type="button" class="btn btn-outline-primary">Create Exam</button>
+                    <button type="submit" class="btn btn-outline-primary">Save Exam</button>
                 </form>
             </div>
 

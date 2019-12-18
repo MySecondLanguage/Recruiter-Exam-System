@@ -84,8 +84,9 @@ class Exam(models.Model):
     name = models.CharField(
         max_length=100
     )
-    total_duration = models.DurationField(
-        default=30
+    total_duration = models.IntegerField(
+        null=True,
+        blank=True
     )
     question = models.ManyToManyField(
         Question,

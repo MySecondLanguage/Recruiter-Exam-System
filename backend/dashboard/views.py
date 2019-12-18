@@ -82,6 +82,9 @@ def settings(request):
 
 
 def create_exam(request):
+    # if request.method == 'GET':
+    #     if request.GET['exam']:
+    #         Exam.objects.create(name=request.GET['exam'])
     return render(request, 'dashboard/create_exam.html')
 
 
