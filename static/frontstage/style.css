@@ -54,3 +54,8 @@
 .red {
     color: red;
 }
+
+.msg-container {
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -30,6 +30,7 @@ class ResultSummery extends React.Component {
                 <div className="text-center">
                     <p>You have taken the exam already, Here is the score</p>
                     <h4>Find yourself where you positioned</h4>
+                    <a className="btn btn-info" href="../report/">Show Result Details</a>
                 </div>
                 
                 <hr></hr>
