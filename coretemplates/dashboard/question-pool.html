@@ -50,6 +50,11 @@
 <div class="row padding-10">
 
     <h3>Select Questions for your cuurent exam</h3>
+    {% if request.current_exam %}
+                <p>your current exam is {{ request.current_exam.name }} <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
+    {% else %}
+    <p>You don't have any current exam at this moment, <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.create_exam' %}">Create New Exam</a> </p>
+    {% endif %}
     <!-- col-md-12 started -->
     <div class="col-md-12">
 
