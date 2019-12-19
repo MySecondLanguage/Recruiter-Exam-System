@@ -4,6 +4,8 @@ from django.shortcuts import (
     redirect
 )
 
+from django.contrib.auth import authenticate, login as auth_login
+
 from django.db.models import Count
 
 from datetime import timedelta
@@ -42,7 +44,7 @@ def home(request):
         }
         return render(request, 'dashboard/index.html', context)
     else:
-        return HttpResponse('You are not allowed to access to this page')
+        return redirect('backstage')
 
 def question_pool(request):
     if request.user.is_superuser:
@@ -199,3 +201,19 @@ def examinees(request):
     )
     context = {'results': queryset}
     return render(request, 'dashboard/examinees.html', context)
+
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                return redirect('dashboard.home')
+        else:
+            HttpResponse('It seems you tried with wrong crediential, please try again')
+
+    return render(request, 'frontstage/admin_login.html')
