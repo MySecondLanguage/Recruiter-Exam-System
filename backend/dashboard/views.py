@@ -105,23 +105,26 @@ def settings(request):
 
 
 def create_exam(request):
-    if request.method == 'GET':
-        pass
-    else:
-        if request.POST['duration']:
-            duration = timedelta( days=0, hours=0, minutes=0, seconds=int(request.POST['duration']) )
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            pass
         else:
-            duration = timedelta( days=0, hours=0, minutes=0, seconds=0 )
-        exam = Exam.objects.create(
-            name=request.POST['exam'],
-            total_duration=duration
-        )
-        all_exam = Exam.objects.all().exclude(id=exam.id)
-        for i in all_exam:
-            i.is_published = False
-            i.save()
-        return redirect('dashboard.question_pool')
-    return render(request, 'dashboard/create_exam.html')
+            if request.POST['duration']:
+                duration = timedelta( days=0, hours=0, minutes=0, seconds=int(request.POST['duration']) )
+            else:
+                duration = timedelta( days=0, hours=0, minutes=0, seconds=0 )
+            exam = Exam.objects.create(
+                name=request.POST['exam'],
+                total_duration=duration
+            )
+            all_exam = Exam.objects.all().exclude(id=exam.id)
+            for i in all_exam:
+                i.is_published = False
+                i.save()
+            return redirect('dashboard.question_pool')
+        return render(request, 'dashboard/create_exam.html')
+    else:
+        return redirect('backstage')
 
 def create_topic(request):
     if request.method == 'GET':
