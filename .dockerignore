@@ -1,0 +1,4 @@
+# Docker ignore file not copy specific file or dir
+.git
+node_modules
+build
