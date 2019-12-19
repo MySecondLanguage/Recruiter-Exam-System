@@ -112,7 +112,7 @@ def create_topic(request):
             name=request.POST['name'],
         )
         
-        return redirect('dashboard.question_pool')
+        return redirect('dashboard.create_question_choice')
     return render(request, 'dashboard/create_topic.html')
 
 
@@ -167,6 +167,7 @@ def create_question_choice(request):
                 choice=Choice.objects.create(choice_text=form['choice_text'], is_right_choice=form['is_right_choice']),
                 question=question,
             )
+        return redirect('dashboard.question_pool')
 
 
         
