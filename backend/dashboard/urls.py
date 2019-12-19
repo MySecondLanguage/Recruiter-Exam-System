@@ -10,4 +10,5 @@ urlpatterns = [
     path('create-exam/', views.create_exam, name='dashboard.create_exam'),
     path('create-topic/', views.create_topic, name='dashboard.create_topic'),
     path('create-question_choice/', views.create_question_choice, name='dashboard.create_question_choice'),
+    path('logout/', views.custom_logout, name='leave_board'),
 ]

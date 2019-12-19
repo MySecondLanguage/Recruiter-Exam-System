@@ -10,6 +10,8 @@ from django.db.models import Count
 
 from datetime import timedelta
 
+from django.contrib.auth import logout
+
 from exam.models import (
     Choice,
     Exam,
@@ -217,3 +219,8 @@ def login(request):
             HttpResponse('It seems you tried with wrong crediential, please try again')
 
     return render(request, 'frontstage/admin_login.html')
+
+
+def custom_logout(request):
+    logout(request)
+    return redirect('backstage')
