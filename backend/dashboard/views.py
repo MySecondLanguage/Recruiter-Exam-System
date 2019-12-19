@@ -17,7 +17,7 @@ from exam.models import (
     Topic
 )
 
-from result.models import Result
+from result.models import Result, ResultSummery
 
 from account.models import (
     Profile
@@ -172,3 +172,15 @@ def create_question_choice(request):
 
         
     return render(request, 'dashboard/create_question_choice.html', context)
+
+
+
+def examinees(request):
+    queryset = ResultSummery.objects.filter(
+        exam__id=request.current_exam.id
+    ).order_by(
+        '-total_marks',
+        'total_elapsed_second'
+    )
+    context = {'results': queryset}
+    return render(request, 'dashboard/examinees.html', context)
