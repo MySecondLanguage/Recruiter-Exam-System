@@ -23,9 +23,24 @@ from account.models import (
     Profile
 )
 
+from account.enum_helper import UserType
+
 def home(request):
     if request.user.is_superuser:
-        return render(request, 'dashboard/index.html')
+        total_exam = Exam.objects.all().count()
+        total_question = Question.objects.all().count()
+        total_topic = Topic.objects.count()
+        total_choice = Choice.objects.all().count()
+        total_examinees = Profile.objects.filter(user_type=str(UserType.EXAMINEE.value)).count()
+
+        context = {
+            'total_exam': total_exam,
+            'total_question': total_question,
+            'total_topic': total_topic,
+            'total_choice': total_choice,
+            'total_examinees': total_examinees
+        }
+        return render(request, 'dashboard/index.html', context)
     else:
         return HttpResponse('You are not allowed to access to this page')
 

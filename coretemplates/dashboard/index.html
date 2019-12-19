@@ -3,6 +3,7 @@
 {% block style %}
 
 
+
 {% endblock %}
 
 {% block menu %}
@@ -13,10 +14,54 @@
 {% block content %}
 
 
-    <div>
-        <p>overview will goes theer</p>
-    </div>
+<div class="row padding-10">
+    
+    <!-- col-md-12 started -->
+    <div style="text-align: center;" class="col-md-12">
 
+        <h3>Overview</h3>
+        <a class="btn btn-outline-success" href="{% url 'dashboard.create_exam' %}">Create an Exam</a>
+        {% if request.current_exam %}
+        <a class="btn btn-outline-info" href="{% url 'dashboard.question_pool' %}">Add Question to {{ request.current_exam }}</a>
+        {% else %}
+        <a class="btn btn-outline-success" href="{% url 'dashboard.create_question_choice' %}">Create Question</a>
+        {% endif %}
+        <hr>
+        <!-- question selection started -->
+        <div class="multiselect-container">
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Current Exam</th>
+                        <th scope="col">Total Examinees</th>
+                        <th scope="col">Total Question</th>
+                        <th scope="col">Total Choices</th>
+                        <th scope="col">Total Topic</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    <tr>
+                        <th scope="row">{% if request.current_exam %} {{ request.current_exam }} {% else %} no current exam {% endif %}</th>
+                        <td>{{ total_examinees }}</td>
+                        <td>{{ total_question }}</td>
+                        <td>{{ total_choice }}</td>
+                        <td>{{ total_topic }}</td>
+                    </tr>
+        
+            
+                    </tbody>
+                  </table>
+            </div>
+
+        </div>
+        <!-- question selection ended -->
+
+
+    </div><!-- col-md-12 ended -->
+</div>
 
 
 {% endblock %}
@@ -24,5 +69,5 @@
 
 
 {% block js %}
-  
+
 {% endblock %}

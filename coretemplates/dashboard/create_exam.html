@@ -22,7 +22,7 @@
         <h3>Create an exam</h3>
         <!-- question selection started -->
         <div class="multiselect-container">
-            <p>New Created Exam will be identified as current exam, but you can <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
+            <p>New Created Exam will be identified as current exam, but you can <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It</a></p>
             
             {% if request.current_exam %}
                 <p>your current exam is {{ request.current_exam.name }} <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>

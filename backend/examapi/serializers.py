@@ -4,7 +4,8 @@ from rest_framework import serializers
 from exam.models import (
     Question,
     Choice,
-    QuestionChoice
+    QuestionChoice,
+    Exam
 )
 
 from result.models import (
@@ -42,9 +43,24 @@ class QuestionSerializer(ModelSerializer):
 
 
     def get_total_second(self, obj):
-        total_duration = str(obj.total_duration)
-        h, m, s = total_duration.split(':')
-        return int(h) * 3600 + int(m) * 60 + int(s)
+        exam = Exam.objects.filter(
+            is_published=True
+        ).first()
+
+        if str(exam.total_duration) == '0:00:00':
+            total_duration = str(obj.total_duration)
+            h, m, s = total_duration.split(':')
+            return int(h) * 3600 + int(m) * 60 + int(s)
+        else:
+            total_duration = str(exam.total_duration)
+            h, m, s = total_duration.split(':')
+
+            question = Question.objects.filter(
+                exam__id=exam.id
+            ).count()
+
+            total_second = int(h) * 3600 + int(m) * 60 + int(s)
+            return int(total_second) // int(question)
 
     
 
