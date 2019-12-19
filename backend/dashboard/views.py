@@ -72,7 +72,7 @@ def question_pool(request):
             del q_id[0]
 
             for q in q_id:
-                in_group = QuestionGroup.objects.filter(question__id=str(q))
+                in_group = QuestionGroup.objects.filter(question__id=str(q), exam__id=str(request.current_exam.id))
                 if in_group.exists():
                     context['error'] = 'An error occured, {} : Already added with this current exam. \
                         A question can not be added twich in the same exam. but you can add it in another exam. \

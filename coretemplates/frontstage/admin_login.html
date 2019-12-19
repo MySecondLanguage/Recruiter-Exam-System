@@ -7,8 +7,8 @@
   
   <div class="row">
     <div style="text-align: center;" class="col-md-12">
-        {% if not request.user.is_superuser %}
-        <p style="color: red;">You are not allowed to access to dashboard, please login if here if you are admin</p>
+        {% if not request.user.is_superuser and request.user.is_authenticated %}
+        <p style="color: red;">You are not allowed to access to dashboard, please login if you are admin</p>
         {% endif %}
       <div class="start-exam">
           <h4>Admin Login</h4>
