@@ -89,7 +89,20 @@ run the django server
 we assume you are in project directory (RES)
 
 ```
-    python3 backend/manage.py runserver
+python3 backend/manage.py migrate
+python3 backend/manage.py runserver
+```
+
+and create a superuser
+
+```
+python3 backend/manage.py createsuperuser
+```
+
+# or you can try with docker
+
+```
+ docker-compose up
 ```
 
 # LICENSE
