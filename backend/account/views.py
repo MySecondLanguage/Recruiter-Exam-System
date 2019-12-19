@@ -8,6 +8,8 @@ from django.db.models import F, Value, Case, When, BooleanField, Prefetch
 from account.models import Profile
 from account.enum_helper import UserType
 
+from django.db.models import Q
+
 from exam.models import (
     QuestionGroup,
     QuestionChoice,
@@ -18,26 +20,42 @@ from exam.models import (
 )
 
 def home(request):
+    context = {}
     if request.POST:
         name = request.POST['name']
         email = str(request.POST['email'])
         password = str(request.POST['email'])
         username = str(email).split('@')[0]
-
-        created_user = User.objects.create_user(
-            username,
-            email,
-            password
-        )
-        Profile.objects.create(
-            user=created_user,
-            user_type=UserType.EXAMINEE.value
+        existence_user = User.objects.filter(
+            Q(username=username) |
+            Q(email=email)
         )
 
-        user = authenticate(request, email=email, username=username, password=password)
-        if user is not None:
-            login(request, user)
-        return redirect('exam')
+        if existence_user.exists():
+            if existence_user.first().is_superuser:
+                context['error'] = "Opps! You admin can't sit for exam"
+                return render(request, 'frontstage/index.html', context)
+            else:
+                auth_user = authenticate(request, email=email, username=username, password=password)
+                if auth_user is not None:
+                    login(request, auth_user)
+                return redirect('exam')
+
+        else:
+            created_user = User.objects.create_user(
+                username,
+                email,
+                password
+            )
+            Profile.objects.create(
+                user=created_user,
+                user_type=UserType.EXAMINEE.value
+            )
+
+            user = authenticate(request, email=email, username=username, password=password)
+            if user is not None:
+                login(request, user)
+            return redirect('exam')
     else:
         return render(request, 'frontstage/index.html')
 

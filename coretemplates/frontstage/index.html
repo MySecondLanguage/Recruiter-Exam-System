@@ -10,6 +10,7 @@
       <div class="start-exam">
         {% if request.current_exam %}
         <h1>Current Exam : <span class="exam-name">{{ request.current_exam }}</span></h1>
+        <p style="color: red;">{{ error }}</p>
         <hr>
         <form method="POST">
           {% csrf_token %}
