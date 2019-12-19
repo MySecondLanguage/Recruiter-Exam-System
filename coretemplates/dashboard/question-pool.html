@@ -61,7 +61,7 @@
     </div>
 
     {% if request.current_exam %}
-                <p>Your current exam is {{ request.current_exam.name }} <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
+                <p>Your current exam is <span style="font-weight: bold;">{{ request.current_exam.name }}</span> <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
     {% else %}
     <p>You don't have any current exam at this moment, <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.create_exam' %}">Create New Exam</a> </p>
     {% endif %}

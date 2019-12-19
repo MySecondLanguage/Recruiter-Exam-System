@@ -74,8 +74,9 @@ def question_pool(request):
             for q in q_id:
                 in_group = QuestionGroup.objects.filter(question__id=str(q))
                 if in_group.exists():
-                    context['error'] = 'An Error Occured, {} : Already added with this current exam. \
-                        A question can not be added twich in the same exam. But you can add in another exam'.format(str(in_group.first().question.title))
+                    context['error'] = 'An error occured, {} : Already added with this current exam. \
+                        A question can not be added twich in the same exam. but you can add it in another exam. \
+                            to add this question to another exam, please chanage your current exam'.format(str(in_group.first().question.title))
                 else:
                     QuestionGroup.objects.create(
                         exam=request.current_exam,
