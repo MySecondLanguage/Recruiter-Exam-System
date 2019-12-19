@@ -6,7 +6,10 @@
 <div class="spacer-150"></div>
   
   <div class="row">
-    <div class="col-md-12">
+    <div style="text-align: center;" class="col-md-12">
+        {% if not request.user.is_superuser %}
+        <p style="color: red;">You are not allowed to access to dashboard, please login if here if you are admin</p>
+        {% endif %}
       <div class="start-exam">
           <h4>Admin Login</h4>
         <form method="POST">
@@ -20,7 +23,7 @@
             <input type="password" name="password" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Password">
           </div>
     
-          <button type="submit" class="btn btn-danger">Get Started</button>
+          <button type="submit" class="btn btn-danger">Login</button>
         </form>
       </div>
     </div>

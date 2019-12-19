@@ -26,7 +26,7 @@ class Home extends React.Component {
         if (time) {
             time = parseInt(time) * 1000
         setTimeout(() => {
-            // this.inputElement.click();
+            this.inputElement.click();
           }, time);
         };
         

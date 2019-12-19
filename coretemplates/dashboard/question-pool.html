@@ -52,13 +52,16 @@
 
 
     <h3>Select Questions for your cuurent exam</h3>
-
+    <hr>
+    
     <div class="col-md-8">
-        <a class="btn btn-lg btn-success" href="{% url 'dashboard.create_question_choice' %}">Create Question</a>
+        <hr>
+        <a class="btn btn-success" href="{% url 'dashboard.create_question_choice' %}">Create Question</a>
+        <hr>
     </div>
 
     {% if request.current_exam %}
-                <p>your current exam is {{ request.current_exam.name }} <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
+                <p>Your current exam is {{ request.current_exam.name }} <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.settings' %}">Change It Now</a></p>
     {% else %}
     <p>You don't have any current exam at this moment, <a style="color: red; text-decoration: underline;" href="{% url 'dashboard.create_exam' %}">Create New Exam</a> </p>
     {% endif %}
@@ -99,18 +102,18 @@
 <div style="margin-bottom: 20px;" class="row">
     
 </div>
-
+    <p style="color: red;">{{ error }}</p>
+    <p style="color: green;">{{ success }}</p>
         {% if topic_question %}
         <!-- question selection started -->
         <div class="multiselect-container">
 
             <div>
                 {% if request.current_exam %}
-
                 <form method="POST">
                     {% csrf_token %}
-
                     {% for topic in topic_question %}
+                    
                     <div class="topic">
                         <h1>{{ topic.name }}</h1>
                         {% for question in topic.questions_by_topic.all %}
@@ -135,6 +138,9 @@
         </div>
         <!-- question selection ended -->
 
+        {% else %}
+        <p style="color: red;">No topic selectd to find question, please find question by topic first</p>
+        <a class="btn btn-warning" href="{% url 'dashboard.create_topic' %}">Create A Topic</a>
         {% endif %}
 
     </div><!-- col-md-12 ended -->

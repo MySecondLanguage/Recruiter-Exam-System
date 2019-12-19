@@ -25,6 +25,8 @@
           <button type="submit" class="btn btn-danger">Get Started</button>
           {% else %}
           <h1>No Published Exam Available at this moment, please try again later</h1>
+
+          <p>If you are admin, <a class="btn btn-warning" href="{% url 'dashboard.create_exam' %}">Create an exam</a></p>
           {% endif %}
         </form>
       </div>

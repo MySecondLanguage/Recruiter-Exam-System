@@ -5,10 +5,13 @@ from django.shortcuts import (
 )
 
 from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.decorators import login_required
+
 
 from django.db.models import Count
 
 from datetime import timedelta
+import time
 
 from django.contrib.auth import logout
 
@@ -62,15 +65,6 @@ def question_pool(request):
                 'questions_by_topic'
             )
 
-            # """
-            # WE SHOULD CONSTRUCT RESULT LIKE THIS BELOW IF YOU WANT TO QUERY IN TEMPLATE LABEL
-            # {% for question in topic.questions_by_topic.all %}
-            # """
-            # result = {
-            #     t.name: [{'id': q.id, 'title': q.title} for q in t.questions_by_topic.all()]
-            #     for t in questions_by_topic
-            # }
-
             context['topic_question'] = questions_by_topic
 
         if request.POST:
@@ -78,14 +72,20 @@ def question_pool(request):
             del q_id[0]
 
             for q in q_id:
-                QuestionGroup.objects.create(
-                    exam=request.current_exam,
-                    question=Question.objects.get(id=q)
-                )
+                in_group = QuestionGroup.objects.filter(question__id=str(q))
+                if in_group.exists():
+                    context['error'] = 'An Error Occured, {} : Already added with this current exam. \
+                        A question can not be added twich in the same exam. But you can add in another exam'.format(str(in_group.first().question.title))
+                else:
+                    QuestionGroup.objects.create(
+                        exam=request.current_exam,
+                        question=Question.objects.get(id=q)
+                    )
+                    context['success'] = "Successfully added some questions"
             
         return render(request, 'dashboard/question-pool.html', context)
     else:
-        HttpResponse('You are not allowed to acccess to this page')
+        return redirect('backstage')
 
 
 def settings(request):
@@ -111,7 +111,6 @@ def create_exam(request):
             duration = timedelta( days=0, hours=0, minutes=0, seconds=int(request.POST['duration']) )
         else:
             duration = timedelta( days=0, hours=0, minutes=0, seconds=0 )
-        print(request.POST['exam'])
         exam = Exam.objects.create(
             name=request.POST['exam'],
             total_duration=duration
@@ -139,8 +138,10 @@ def create_question_choice(request):
     context = {}
     topic = Topic.objects.all()
     context['topics'] = topic
+    
     if request.method == 'POST':
-        duration = timedelta( days=0, hours=0, minutes=0, seconds=int(request.POST['total_duration']) )
+        duration = request.POST['total_duration'] if 'total_duration' in request.POST else 0
+        duration = timedelta( days=0, hours=0, minutes=0, seconds=int(duration) )
         question = Question.objects.create(
             title=request.POST['title'],
             total_duration=duration,
