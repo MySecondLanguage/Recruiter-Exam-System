@@ -20,7 +20,7 @@ Technolgoy We Used for this application:
 step into project directory
 
 ```
-cd PES
+cd RES
 ```
 
 ## Backend Setup
